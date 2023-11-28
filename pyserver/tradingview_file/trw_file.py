@@ -11,5 +11,5 @@ def read_trw_file():
         action = line['Action'].split(' ')[1]
         symbol = line['Action'].split(' ')[5].split(':')[1]
         pl = float(line['P&L'])
-        ret_list.append({'date': date, 'time': time, 'symbol': symbol, 'pl': pl, 'action': action})
+        ret_list.append({'date': date, 'time': time[:5], 'symbol': symbol, 'pl': pl, 'action': action})
     return ret_list
