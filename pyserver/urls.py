@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import send_ibkr_file_data
+from .views import send_ibkr_file_data, send_trw_file_data
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ibkr-file/', send_ibkr_file_data)
+    path('ibkr-file/', send_ibkr_file_data),
+    path('trw-file/', send_trw_file_data)
 ]

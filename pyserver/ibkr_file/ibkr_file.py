@@ -36,15 +36,14 @@ def read_ibkr_file():
         date = first_opposite_action[0]
         time = first_opposite_action[1]
         symbol = trade[2]
-        pl = round(first_opposite_action[3] + trade[3], 2)
         action = trade[-1]
+        pl = round(first_opposite_action[3] + trade[3], 2)
+        pl = pl * -1 if first_opposite_action[3] < trade[3] and action == 'long' else pl * 1
+        pl = pl * -1 if first_opposite_action[3] > trade[3] and action == 'short' else pl * 1
 
         ret_list.pop(0)
         ret_list.pop(first_opposite_action_index - 1)
 
-        calc_list.append([date, time, symbol, pl, action])
+        calc_list.append({'date': date, 'time': time, 'symbol': symbol, 'pl': pl, 'action': action})
 
     return calc_list
-
-
-print(read_ibkr_file())
